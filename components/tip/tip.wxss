@@ -1,0 +1,14 @@
+.tm-wrap-nodivider {
+    width: 100%;
+    color: #999;
+    text-align: center;
+    padding: 5rpx 0;
+    margin-top: 40rpx;
+    font-size: 22rpx;
+}
+
+/* 有虚线的 */
+.tm-wrap-divider {
+    width: 690rpx;
+    margin: 0 auto;
+}

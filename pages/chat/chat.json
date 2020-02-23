@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "x-tip": "/components/tip/tip",
+        "x-ask": "/components/ask/ask",
+        "x-mike": "/components/mike/mike",
+        "x-ans": "/components/ans/ans"
+    }
+}

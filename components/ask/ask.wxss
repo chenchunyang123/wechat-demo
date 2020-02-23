@@ -1,0 +1,125 @@
+.ak-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20rpx;
+}
+
+.ak-flex {
+    display: flex;
+}
+
+.ak-text {
+    flex: 1;
+    word-break: break-all;
+    background-color: #3978FC;
+    box-shadow: 0rpx 2rpx 10rpx 0rpx rgba(153, 153, 153, 0.2);
+    color: #fff;
+    padding: 27rpx 21rpx 27rpx 24rpx;
+    line-height: 1.5;
+    margin-right: 12rpx;
+    font-size: 28rpx;
+    border-radius: 12rpx;
+    border-top-right-radius: 0;
+    max-width: 474rpx;
+}
+
+.ak-headImg {
+    width: 75rpx;
+    height: 75rpx;
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.ak-voice-wrap {
+    position: relative;
+    padding-right: 12rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.ak-voice-main {
+    min-width: 150rpx;
+    height: 88rpx;
+    background-color: #3978FC;
+    box-shadow: 0rpx 2rpx 10rpx 0rpx rgba(153, 153, 153, 0.2);
+    border-radius: 12rpx;
+    border-top-right-radius: 0;
+    position: relative;
+}
+
+.ak-voice-choose {
+    background-color: #2E60C9 !important;
+}
+
+.ak-voice-main text {
+    font-size: 28rpx;
+    color: #fff;
+    position: absolute;
+    right: 60rpx;
+    top: 27rpx;
+}
+
+.ak-voice-totext {
+    width: 143rpx;
+    height: 75rpx;
+    position: absolute;
+    left: 50%;
+    top: -90rpx;
+    transform: translateX(-50%);
+    background-color: #262626;
+    box-shadow: 0rpx 4rpx 32rpx -4rpx rgba(0, 120, 226, 0.2);
+    border-radius: 8rpx;
+    color: #fff;
+    font-size: 28rpx;
+    line-height: 75rpx;
+    z-index: 999;
+    text-align: center;
+}
+
+.ak-voice-totext::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2rpx;
+    transform: rotate(-45deg) translateX(-50%);
+    width: 0;
+    height: 0;
+    border: 6rpx solid #262626;
+    border-top-color: transparent;
+    border-right-color: transparent;
+}
+
+.ak-voice-text-result {
+    min-width: 100rpx;
+    max-width: 475rpx;
+    min-height: 43rpx;
+    background-color: #fff;
+    box-shadow: 0rpx 2rpx 10rpx 0rpx rgba(153, 153, 153, 0.2);
+    border-radius: 8rpx;
+    margin-top: 10rpx;
+    padding: 15rpx 20rpx 36rpx;
+    font-size: 28rpx;
+    word-break: break-all;
+    position: relative;
+}
+
+.ak-voice-text-result text {
+    position: absolute;
+    left: 10rpx;
+    bottom: 4rpx;
+    font-size: 22rpx;
+    color: #999;
+}
+
+/* 浮层 */
+/* .ak-voice-float {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 998;
+} */

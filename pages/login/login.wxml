@@ -1,0 +1,28 @@
+<!-- 自定义标题 -->
+<view class="lg-title">
+    <text>华小来</text>
+</view>
+<!-- 登陆展示的图片 -->
+<view class="lg-pic">
+    <van-image 
+        custom-class="lg-pic-bg" 
+        src="/asset/login-bg.png"
+    />
+</view>
+<!-- tips -->
+<view class="lg-tips">
+    <view>
+        欢迎使用<text>华小来</text>
+    </view>
+    <text>您的智能车管家</text>
+</view>
+<!-- 登录按钮 -->
+<view class="lg-btn">
+    <van-button 
+        open-type="getUserInfo" 
+        bindgetuserinfo="getInfo" 
+        type="primary" 
+        color="#3978FC"
+        block
+    >登录</van-button>
+</view>

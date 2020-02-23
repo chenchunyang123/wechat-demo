@@ -1,0 +1,68 @@
+.as-wrap {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20rpx;
+}
+
+.as-flex {
+    display: flex;
+    max-width: 654rpx;
+}
+
+.as-text {
+    flex: 1;
+    word-break: break-all;
+    background-color: #fff;
+    box-shadow: 0rpx 2rpx 10rpx 0rpx rgba(153, 153, 153, 0.2);
+    color: #333;
+    padding: 15rpx 10rpx 20rpx 16rpx;
+    line-height: 1.5;
+    margin-left: 12rpx;
+    font-size: 28rpx;
+    border-radius: 12rpx;
+    border-top-left-radius: 0;
+}
+
+.as-headImg {
+    width: 75rpx;
+    height: 75rpx;
+}
+
+.as-headImg image {
+    width: 100%;
+    height: 100%;
+}
+
+/* moreQuestions样式 */
+
+.as-more {
+    width: 571rpx;
+    flex: 1;
+    padding: 22rpx 11rpx 5rpx 23rpx;
+    margin-left: 12rpx;
+    background-color: #fff;
+    box-shadow: 0rpx 2rpx 10rpx 0rpx rgba(153, 153, 153, 0.2);
+    border-radius: 12rpx;
+    border-top-left-radius: 0;
+}
+
+.as-more-title {
+    border-bottom: 1rpx solid #D5D9DC;
+    font-size: 28rpx;
+    color: #666;
+    padding-bottom: 10rpx;
+    margin-bottom: 19rpx;
+}
+
+.as-more-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.as-more-list text {
+    width: 100%;
+    height: 46rpx;
+    font-size: 28rpx;
+    color: #3267FF;
+    margin-bottom: 8rpx;
+}

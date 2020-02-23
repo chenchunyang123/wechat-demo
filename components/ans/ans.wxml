@@ -1,0 +1,27 @@
+<view class="as-wrap">
+    <view class="as-flex">
+        <!-- 头像 -->
+        <view class="as-headImg">
+            <image src="/asset/bot-img.png"></image>
+        </view>
+        <!-- 文本 -->
+        <block wx:if="{{type === 'text'}}">
+            <text class="as-text">{{value}}</text>
+        </block>
+        <block wx:if="{{type === 'moreQuestions'}}">
+            <view class="as-more">
+                <view class="as-more-title">
+                    您可以问我：
+                </view>
+                <view class="as-more-list">
+                    <text
+                        wx:for="{{list}}" 
+                        wx:key="{{index}}" 
+                        data-item="{{item}}" 
+                        bindtap="handleAskAsText"
+                    >{{item}}</text>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

@@ -1,0 +1,46 @@
+<view class="ak-wrap">
+    <view class="ak-flex">
+        <!-- 文本 -->
+        <block wx:if="{{type === 'text'}}">
+            <text class="ak-text">{{value}}</text>
+        </block>
+        <!-- 语音 -->
+        <block wx:elif="{{type === 'voice'}}">
+            <view class="ak-voice-wrap">
+                <!-- 语音主体 -->
+                <view 
+                    class="ak-voice-main {{ifChoose || toTextBtn ? 'ak-voice-choose' : ''}}" 
+                    style="width: {{150 + sec*3}}rpx;"
+                    bindtap="handleSwitch" 
+                    bindlongpress="handleLongPress"
+                    bindtouchstart="handleVoiceStart"
+                    bindtouchend="handleVoiceEnd"
+                >
+                    <!-- 秒数 -->
+                    <text>{{sec}}″</text>
+                    <!-- 转文字按钮 -->
+                    <view class="ak-voice-totext" bindtap="handleToText" hidden="{{!toTextBtn}}">
+                        转文字
+                    </view>
+                </view>
+                <!-- 转文字结果 -->
+                <view class="ak-voice-text-result" hidden="{{!textResult || error}}">
+                    {{loading ? '' : text}}
+                    <van-loading size="28rpx" wx:if="{{loading}}" />
+                    <text>{{loading ? '正在识别' : '转换完成'}}</text>
+                </view>
+            </view>
+        </block>
+        <!-- 头像 -->
+        <view class="ak-headImg">
+            <open-data type="userAvatarUrl"></open-data>
+        </view>
+    </view>
+</view>
+
+<!-- 转文字按钮出现时候，同时出现的浮层，用来点击使“转文字按钮”消失 -->
+<!-- <view 
+    class="ak-voice-float" 
+    hidden="{{!toTextBtn}}"
+    bindtouchstart="handleCancleToText"
+></view> -->

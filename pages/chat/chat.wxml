@@ -1,0 +1,74 @@
+<!-- 加载完毕的主页面 -->
+<view wx:if="{{!getScopeLoad}}">
+    <!-- title背景栏 -->
+    <view class="ct-title">
+        <image src="/asset/chat-title-bg.png"></image>
+        <text>华小来</text>
+        <!-- 机器人开始提示框 -->
+        <view class="ct-botTip">
+            <image src="/asset/chat-bot-tip.png"></image>
+            <view class="ct-botTip-text">
+                <text>我是您的智能车管家华小来！</text>
+                <view>
+                    Hi，<open-data type="userNickName"></open-data>，{{hiWords}}好。
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 固定的时间及文案 -->
+    <x-tip value="2020年2月10日 9:00" divider="{{false}}" />
+    <x-tip value="管家小来正在为您服务" divider="{{true}}" />
+    <!-- 对话流 -->
+    <scroll-view class="ct-dialog" scroll-y="true" scroll-with-animation="true" scroll-top="{{scrollTop}}">
+        <view class="ct-dialog-inner">
+            <block wx:for="{{dialogArr}}" wx:key="{{index}}">
+                <!-- tip提示 -->
+                <block wx:if="{{item.num === 2}}">
+                    <x-tip value="{{item.value}}" divider="{{item.divider}}" />
+                </block>
+                <!-- 文字提问 -->
+                <block wx:if="{{item.num === 0 && item.type === 'text'}}">
+                    <x-ask value="{{item.value}}" type="text" />
+                </block>
+                <!-- 语音提问 -->
+                <block wx:if="{{item.num === 0 && item.type === 'voice'}}">
+                    <x-ask 
+                        class="voice"
+                        bind:maskDisplay="letMaskDisplay"
+                        bind:maskHidden="letMaskHidden"
+                        bind:toBottom="scrollToBottom"
+                        url="{{item.url}}" 
+                        type="voice" 
+                        sec="{{item.sec}}" 
+                        text="{{item.text}}"
+                        loading="{{item.loading}}"
+                        error="{{item.error}}"
+                    />
+                </block>
+                <!-- 机器回答 -->
+                <block wx:if="{{item.num === 1 && item.type === 'text'}}">
+                    <x-ans value="{{item.value}}" type="{{item.type}}" />
+                </block>
+                <block wx:if="{{item.num === 1 && item.type === 'moreQuestions'}}">
+                    <x-ans 
+                        list="{{item.list}}" 
+                        type="{{item.type}}" 
+                        bind:askAsText="onAskAsText"
+                    />
+                </block>
+            </block>
+        </view>
+    </scroll-view>
+    <!-- 语音按钮 -->
+    <x-mike bind:mikeResult="onMikeResult" />
+</view>
+
+<!-- 语音识别失败的toast -->
+<van-toast id="van-toast" />
+
+<!-- 点击页面其他位置使“转文字”按钮消失的view -->
+<view 
+    class="ct-float"
+    hidden="{{!mask}}"
+    bindtouchstart="handleMaskHidden"
+></view>

@@ -1,0 +1,15 @@
+<!-- 没有虚线 -->
+<block wx:if="{{!divider}}">
+    <view class="tm-wrap-nodivider">
+        <text>{{value}}</text>
+    </view>
+</block>
+<!-- 有虚线 -->
+<block wx:if="{{divider}}">
+    <view class="tm-wrap-divider">
+        <van-divider 
+            contentPosition="center" 
+            customStyle="color: #999; border-color: #C1C0C9; font-size: 22rpx; margin: 10rpx;"
+        >{{value}}</van-divider>
+    </view>
+</block>
