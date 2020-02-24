@@ -15,9 +15,6 @@
             </view>
         </view>
     </view>
-    <!-- 固定的时间及文案 -->
-    <x-tip value="2020年2月10日 9:00" divider="{{false}}" />
-    <x-tip value="管家小来正在为您服务" divider="{{true}}" />
     <!-- 对话流 -->
     <scroll-view class="ct-dialog" scroll-y="true" scroll-with-animation="true" scroll-top="{{scrollTop}}">
         <view class="ct-dialog-inner">
@@ -37,11 +34,14 @@
                         bind:maskDisplay="letMaskDisplay"
                         bind:maskHidden="letMaskHidden"
                         bind:toBottom="scrollToBottom"
+                        bind:changePlayingVoice="changePlayingVoice"
+                        bind:voiceEnded="voiceEnded"
                         url="{{item.url}}" 
                         type="voice" 
                         sec="{{item.sec}}" 
                         text="{{item.text}}"
                         loading="{{item.loading}}"
+                        ifPlaying="{{item.ifPlaying}}"
                         error="{{item.error}}"
                     />
                 </block>
@@ -65,6 +65,9 @@
 
 <!-- 语音识别失败的toast -->
 <van-toast id="van-toast" />
+
+<!-- 录音授权的toast -->
+<van-dialog id="van-dialog" />
 
 <!-- 点击页面其他位置使“转文字”按钮消失的view -->
 <view 

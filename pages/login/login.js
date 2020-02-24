@@ -14,23 +14,15 @@ Page({
         if (e.detail.userInfo) {
             // 允许则设置用户信息
             app.setGlobalData('userInfo', e.detail.userInfo);
-            // 然后获取语音输入权限
-            if (app.getGlobalData('canUseMike')) {
-                // 已授权语音输入
-                wx.redirectTo({
-                    url: '/pages/chat/chat',
-                })
-            } else {
-                // 未授权语音输入，发起授权
-                wx.authorize({
-                    scope: 'scope.record',
-                    complete: () => { // 允许拒绝都会执行
-                        wx.redirectTo({
-                            url: '/pages/chat/chat',
-                        })
-                    }
-                })
-            }
+            // 发起语音授权
+            wx.authorize({
+                scope: 'scope.record',
+                complete: () => { // 允许拒绝都会执行
+                    wx.redirectTo({
+                        url: '/pages/chat/chat',
+                    })
+                }
+            })
         } else {
             // 拒绝不进行任何处理
         }

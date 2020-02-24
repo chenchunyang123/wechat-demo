@@ -47,7 +47,6 @@ Page({
                 }
                 if (res.authSetting['scope.record']) {
                     // 已经授权录音
-                    app.setGlobalData('canUseMike', true);
                 } else {
                     // 未授权录音
                 }
@@ -73,6 +72,8 @@ Page({
         this.setData({
             hiWords: newHiWords,
             dialogArr: [
+                { num: 2, value: formatTime(new Date()), divider: false },
+                { num: 2, value: '管家小来正在为您服务', divider: true },
                 {
                     num: 1, 
                     type: 'text', 
@@ -80,8 +81,7 @@ Page({
                 },
                 { num: 1, type: 'moreQuestions', list: ['我的车加什么油？', '怎么安装', '如何使用行车记录仪'] },
                 // {num: 0, type: 'text', value: '阿双方均卡萨合肥市飞机撒粉红色快捷键开始放假是多少'}
-                { num: 0, type: 'voice', sec: 60 },
-                {num: 0, type: 'voice', text: 'jdfakfaljfskljfsdlfjlsdfjsdfslflklajfklsjfsldjfslfjsfsfsldkfjsdlj'},
+                { num: 0, type: 'voice', sec: 30, loading: false, ifPlaying: false },
             ]
         })
     },
@@ -179,6 +179,34 @@ Page({
         // 让转按钮消失
         let cs = this.selectAllComponents('.voice');
         cs && cs.forEach(item => item.setData({ toTextBtn: false }));
+    },
+
+    // 改变当前正在播放的语音
+    changePlayingVoice(e) {
+        let { detail } = e; // 传来的音频临时地址,通过这个来定位播放的是哪一个音频
+        // 找到点击前播放的录音，并关闭播放效果
+        let lastIdx = this.data.dialogArr.findIndex(item => item.ifPlaying === true); // 拿到上一个播放语音的索引
+        if (lastIdx !== -1) {
+            // 进入这里说明上一个录音还没播放完
+            this.setData({
+                [`dialogArr[${lastIdx}].ifPlaying`]: false,
+            })
+        }
+        // 打开点击后的录音，并开启播放效果
+        let idx = this.data.dialogArr.findIndex(item => item.url === detail); // 拿到当前语音对应值的索引
+        this.setData({
+            [`dialogArr[${idx}].ifPlaying`]: true,
+        })
+    },
+
+    // 语音正常停止
+    voiceEnded() {
+        let lastIdx = this.data.dialogArr.findIndex(item => item.ifPlaying === true);
+        if (lastIdx !== -1) {
+            this.setData({
+                [`dialogArr[${lastIdx}].ifPlaying`]: false,
+            })
+        }
     },
 
     /**

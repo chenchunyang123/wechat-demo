@@ -21,6 +21,11 @@
                         bindtap="handleAskAsText"
                     >{{item}}</text>
                 </view>
+                <!-- 背景图片 -->
+                <image 
+                    src="/asset/chat-ans-bg.png"
+                    class="as-bot-bg"
+                />
             </view>
         </block>
     </view>

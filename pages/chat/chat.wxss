@@ -8,6 +8,7 @@ page {
     height: 295rpx;
     position: relative;
     text-align: center;
+    margin-bottom: 18rpx;
 }
 
 .ct-title > image {
@@ -39,7 +40,7 @@ page {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: -1;
+    z-index: 99;
 }
 
 .ct-botTip-text {
@@ -47,6 +48,8 @@ page {
     flex-direction: column;
     align-items: flex-start;
     padding-left: 230rpx;
+    position: relative;
+    z-index: 99;
 }
 
 .ct-botTip-text text:nth-child(1) {
@@ -64,7 +67,7 @@ page {
 .ct-dialog {
     width: 750rpx;
     /* 通过最后一个值来调整 */
-    height: calc(100vh - 98rpx - 347rpx - 100rpx);
+    height: calc(100vh - 414rpx);
 }
 
 .ct-dialog-inner {

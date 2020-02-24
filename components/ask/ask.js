@@ -13,6 +13,7 @@ Component({
         text: String,   // 转换的文字
         loading: Boolean,   // 是否正在转换成文字
         error: Boolean, // 是否转换错误
+        ifPlaying: Boolean,   // 是否语音正在播放
     },
 
     /**
@@ -22,7 +23,16 @@ Component({
         toTextBtn: false,   // 转文字按钮是否显示
         textResult: false,  // 转文字结果是否显示
         ifChoose: false,    // 按住声音组件和弹出“转文字”按钮时，控制组件背景颜色是否变化
-        ifPlaying: false,   // 是否语音正在播放
+    },
+
+    lifetimes: {
+        created() {
+            app.getGlobalData('innerAudioContext').onEnded(() => {
+                if (this.data.ifPlaying) {  // 如果当前音频的状态为正在播放，则设置成停止播放
+                    this.triggerEvent('voiceEnded');
+                }
+            })
+        }
     },
 
     /**
@@ -54,10 +64,11 @@ Component({
         // 播放或停止
         handleSwitch() {
             let innerAudioContext = app.getGlobalData('innerAudioContext');
-            let { ifPlaying } = this.data;
             innerAudioContext.stop();   // 开始播放前先停止上一个播放
             innerAudioContext.src = this.data.url;
             innerAudioContext.play();
+            // 改变正在播放的语音状态
+            this.triggerEvent('changePlayingVoice', this.data.url);
         },
         // 开始按住声音组件
         handleVoiceStart() {

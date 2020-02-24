@@ -18,6 +18,8 @@
                 >
                     <!-- 秒数 -->
                     <text>{{sec}}″</text>
+                    <!-- 语音图标 -->
+                    <view>{{ifPlaying ? '播放中' : '停止'}}</view>
                     <!-- 转文字按钮 -->
                     <view class="ak-voice-totext" bindtap="handleToText" hidden="{{!toTextBtn}}">
                         转文字
@@ -26,8 +28,11 @@
                 <!-- 转文字结果 -->
                 <view class="ak-voice-text-result" hidden="{{!textResult || error}}">
                     {{loading ? '' : text}}
-                    <van-loading size="28rpx" wx:if="{{loading}}" />
-                    <text>{{loading ? '正在识别' : '转换完成'}}</text>
+                    <view>
+                        <van-loading size="22rpx" wx:if="{{loading}}" />
+                        <view wx:elif="{{!loading}}" class="ak-voice-done"></view>
+                        <text>{{loading ? '正在识别' : '转换完成'}}</text>
+                    </view>
                 </view>
             </view>
         </block>

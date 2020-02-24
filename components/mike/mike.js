@@ -1,3 +1,4 @@
+import Dialog from '@vant/weapp/dialog/dialog';
 const app = getApp();
 let disY = 0;  // 手指按下到松开y方向上移动的距离
 const DIS_MAX = 50;  // 取消录音的最大Y方向距离
@@ -39,30 +40,46 @@ Component({
         handleTouchStart(e) {
             wx.authorize({
                 scope: 'scope.record',
-                success() {
-                    console.log(2)
+                success: () => {
+                    // 成功再录音
+                    // 保存手指y位置
+                    disY = e.changedTouches[0].pageY;
+                    // 更新初始时间
+                    touchTime = new Date().getTime();
+                    // 改变输入状态
+                    this.setData({
+                        ifSpeak: true,
+                    })
+                    // 开始录音
+                    recorderManager.start({
+                        duration: 60000,    // 录音最大时间
+                        sampleRate: 16000,   // 采样率
+                        numberOfChannels: 1,   // 单声道
+                        format: 'wav'
+                    });
                 },
                 fail(e) {
                     console.log(e)
+                    Dialog.confirm({
+                        title: '温馨提示',
+                        message: '需要获取麦克风权限用于语音提问',
+                        confirmButtonText: '去开启',
+                        cancelButtonText: '拒绝',
+                    }).then(() => {
+                        // 确认
+                        console.log('接受录音授权');
+                        wx.openSetting();
+                    }).catch(() => {
+                        // 取消
+                        console.log('拒绝录音授权');
+                    });
                 }
             })
-            // 保存手指y位置
-            disY = e.changedTouches[0].pageY;
-            // 更新初始时间
-            touchTime = new Date().getTime();
-            // 改变输入状态
-            this.setData({
-                ifSpeak: true,
-            })
-            // 开始录音
-            recorderManager.start({
-                duration: 60000,    // 录音最大时间
-                sampleRate: 16000,   // 采样率
-                numberOfChannels: 1,   // 单声道
-                format: 'wav'
-            });
         },
         handleTouchEnd(e) {
+            if (!this.data.ifSpeak) {   // 没有成功开启录音
+                return;
+            }
             // 更新手指Y方向移动的距离
             disY = disY - e.changedTouches[0].pageY;
             // 计算手指松开和按下间的间隔时间

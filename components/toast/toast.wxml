@@ -1,3 +1,0 @@
-<view class="tt-wrap">
-    {{text}}
-</view>

@@ -16,6 +16,7 @@
         "van-image": "@vant/weapp/image",
         "van-divider": "@vant/weapp/divider",
         "van-loading": "@vant/weapp/loading",
-        "van-toast": "@vant/weapp/toast"
+        "van-toast": "@vant/weapp/toast",
+        "van-dialog": "@vant/weapp/dialog"
     }
 }

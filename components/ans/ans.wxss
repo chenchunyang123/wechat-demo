@@ -44,6 +44,8 @@
     box-shadow: 0rpx 2rpx 10rpx 0rpx rgba(153, 153, 153, 0.2);
     border-radius: 12rpx;
     border-top-left-radius: 0;
+    position: relative;
+    min-height: 170rpx;
 }
 
 .as-more-title {
@@ -65,4 +67,12 @@
     font-size: 28rpx;
     color: #3267FF;
     margin-bottom: 8rpx;
+}
+
+.as-bot-bg {
+    width: 136rpx;
+    height: 101rpx;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
